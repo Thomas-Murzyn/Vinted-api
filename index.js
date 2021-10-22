@@ -3,6 +3,7 @@ const express = require("express");
 const formidable = require("express-formidable");
 const mongoose = require("mongoose");
 const cloudinary = require("cloudinary").v2;
+const cors = require("cors");
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -12,6 +13,7 @@ cloudinary.config({
 
 const app = express();
 app.use(formidable());
+app.use(cors());
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -27,6 +29,6 @@ app.use(publish);
 const offer = require("./routes/Offers");
 app.use(offer);
 
-app.listen(process.env.MONGODB_URI, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server has started ...");
 });
