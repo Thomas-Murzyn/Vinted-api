@@ -39,12 +39,12 @@ router.get("/offers", async (req, res) => {
     }
 
     const allOffers = await Offer.find(filter)
-      .limit(maxPages)
-      .skip(maxPages * (page - 1))
+      .limit()
+      .skip()
       .sort(sort)
       .select();
 
-    // add these filters to select if you want to use it product_image product_price product_name
+    // add these filters to select if you want to use it product_image product_price product_name in limit maxPages in skip maxPages * (page - 1)
 
     const count = await Offer.countDocuments(filter);
     res.json({ count: count, allOffers });
