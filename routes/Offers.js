@@ -8,7 +8,7 @@ router.get("/offers", async (req, res) => {
     console.log("/offers");
 
     const filter = {};
-    const maxPages = 3;
+    const maxPages = 6;
     let page = 1;
 
     if (req.query.title) {
@@ -42,7 +42,7 @@ router.get("/offers", async (req, res) => {
       .limit(maxPages)
       .skip(maxPages * (page - 1))
       .sort(sort)
-      .select("product_name product_price");
+      .select();
 
     const count = await Offer.countDocuments(filter);
     res.json({ count: count, allOffers });
