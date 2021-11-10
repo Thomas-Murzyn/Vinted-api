@@ -42,7 +42,9 @@ router.get("/offers", async (req, res) => {
       .limit(maxPages)
       .skip(maxPages * (page - 1))
       .sort(sort)
-      .select("product_name product_price product_image");
+      .select();
+
+    // add these filters to select if you want to use it product_image product_price product_name
 
     const count = await Offer.countDocuments(filter);
     res.json({ count: count, allOffers });
