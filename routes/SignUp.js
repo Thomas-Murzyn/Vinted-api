@@ -22,14 +22,8 @@ router.post("/user/signup", async (req, res) => {
       res.status(400).json({ message: "User account already exists" });
     } else {
       if (req.fields.username && req.fields.email && req.fields.password) {
-        let pictureToUpload = req.files.picture.path
-          ? req.files.picture.path
-          : "";
-        if (pictureToUpload) {
-          const resultUpload = await cloudinary.uploader.upload(
-            pictureToUpload
-          );
-        }
+        let pictureToUpload = req.files.picture.path;
+        const resultUpload = await cloudinary.uploader.upload(pictureToUpload);
 
         const password = req.fields.password;
         const salt = uid2(16);
@@ -40,7 +34,7 @@ router.post("/user/signup", async (req, res) => {
           account: {
             username: req.fields.username,
             phone: req.fields.phone,
-            avatar: resultUpload ? resultUpload : "",
+            avatar: resultUpload,
           },
           token: token,
           hash: hash,
