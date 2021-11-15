@@ -28,11 +28,12 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
     });
     let offerId = await newOffer.save();
     offerId = offerId.id;
-    console.log(offerId);
-    let pictureToUpload = req.files.picture.path;
-    const resultUpload = await cloudinary.uploader.upload(pictureToUpload, {
-      public_id: `vinted/offers/${offerId}`,
-    });
+    const resultUpload = await cloudinary.uploader.upload(
+      req.files.picture.path,
+      {
+        public_id: `vinted/offers/${offerId}`,
+      }
+    );
     newOffer.product_image = resultUpload;
     const result = await newOffer.save();
     res.json({ message: "success", result });

@@ -22,24 +22,27 @@ router.post("/user/signup", async (req, res) => {
       res.status(400).json({ message: "User account already exists" });
     } else {
       if (req.fields.username && req.fields.email && req.fields.password) {
-        let pictureToUpload = req.files.picture.path;
-        const resultUpload = await cloudinary.uploader.upload(pictureToUpload);
-
         const password = req.fields.password;
         const salt = uid2(16);
         const hash = SHA256(password + salt).toString(encBase64);
         const token = uid2(16);
+
         const newUser = new User({
           email: req.fields.email,
           account: {
             username: req.fields.username,
             phone: req.fields.phone,
-            avatar: resultUpload,
           },
           token: token,
           hash: hash,
           salt: salt,
         });
+
+        const resultUpload = await cloudinary.uploader.upload(
+          req.files.picture.path
+        );
+
+        newUser.profil_picture = resultUpload;
         const result = await newUser.save();
         res.status(200).json({
           message: "Account created",
