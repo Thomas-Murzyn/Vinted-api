@@ -5,7 +5,6 @@ const User = require("../models/User");
 const Offer = require("../models/Offer");
 const isAuthenticated = require("../middleware/isAuthenticated");
 const cloudinary = require("cloudinary").v2;
-const { findByIdAndUpdate } = require("../models/User");
 
 // Publier une annonce
 
