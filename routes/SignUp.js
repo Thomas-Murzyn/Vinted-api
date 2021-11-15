@@ -38,11 +38,13 @@ router.post("/user/signup", async (req, res) => {
           salt: salt,
         });
 
-        // const resultUpload = await cloudinary.uploader.upload(
-        //   req.files.picture.path
-        // );
+        if (req.files.picture.path) {
+          const resultUpload = await cloudinary.uploader.upload(
+            req.files.picture.path
+          );
 
-        // newUser.profil_picture = resultUpload;
+          newUser.profil_picture = resultUpload;
+        }
 
         const result = await newUser.save();
         res.status(200).json({
