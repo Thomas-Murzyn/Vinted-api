@@ -24,7 +24,7 @@ router.get("/offers", async (req, res) => {
       if (filter.product_price) {
         filter.product_price.$lte = Number(req.query.priceMax);
       } else {
-        filter.product_price = { $gte: Number(req.query.priceMax) };
+        filter.product_price = { $lte: Number(req.query.priceMax) };
       }
     }
 
