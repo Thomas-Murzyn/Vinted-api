@@ -4,6 +4,7 @@ const formidable = require("express-formidable");
 const mongoose = require("mongoose");
 const cloudinary = require("cloudinary").v2;
 const cors = require("cors");
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
