@@ -1,7 +1,7 @@
 const express = require("express");
 const formidableMiddleware = require("express-formidable");
 const router = require("./Offers");
-
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 const app = express();
 app.use(formidableMiddleware());
 
