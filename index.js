@@ -29,9 +29,6 @@ app.use(publish);
 const offer = require("./routes/Offers");
 app.use(offer);
 
-const payment = require("./routes/Payment");
-app.use(payment);
-
 app.listen(process.env.PORT, () => {
   console.log("Server has started ...");
 });
