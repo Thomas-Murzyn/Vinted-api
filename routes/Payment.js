@@ -3,6 +3,7 @@ const formidableMiddleware = require("express-formidable");
 const router = require("./Offers");
 const app = express();
 app.use(formidableMiddleware());
+const stripe = require("stripe");
 
 router.post("/payment", async (req, res) => {
   try {
