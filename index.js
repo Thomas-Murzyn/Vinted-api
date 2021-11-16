@@ -29,7 +29,7 @@ app.use(publish);
 const offer = require("./routes/Offers");
 app.use(offer);
 
-const payment = require("./routes/Payment");
+const payment = require("./Payment");
 app.use(payment);
 
 app.listen(process.env.PORT, () => {

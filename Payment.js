@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const formidableMiddleware = require("express-formidable");
-const router = require("./routes/Offers");
 const app = express();
 app.use(formidableMiddleware());
 const stripe = require("stripe")(process.env.STRIPE_KEY);
