@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: "../.env" });
 const express = require("express");
 const formidableMiddleware = require("express-formidable");
 const router = require("./Offers");
