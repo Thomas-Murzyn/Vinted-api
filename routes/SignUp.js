@@ -4,13 +4,7 @@ const SHA256 = require("crypto-js/sha256");
 const encBase64 = require("crypto-js/enc-base64");
 const uid2 = require("uid2");
 const User = require("../models/User");
-const cloudinary = require("cloudinary");
-
-cloudinary.config({
-  cloud_name: "dkwgtzzxc",
-  api_key: "759894671485462",
-  api_secret: "yLi_0zya8cMS-S6ZbtCr8XgwaO4",
-});
+const cloudinary = require("cloudinary").v2;
 
 router.post("/user/signup", async (req, res) => {
   try {
